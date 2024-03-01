@@ -15,3 +15,4 @@ pyarrow >= 15.0.0
 fastparquet >= 2024.2.0
 pickleshare >= 0.7.5
 torch >= 2.2.1
+torchvision >= 0.17.1
