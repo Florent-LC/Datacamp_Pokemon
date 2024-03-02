@@ -6,35 +6,23 @@ from sklearn.model_selection import ShuffleSplit, train_test_split
 from sklearn.preprocessing import MultiLabelBinarizer
 from PIL import Image, ImageOps
 
-def padding(img, expected_size):
-    desired_size = expected_size
-    delta_width = desired_size[0] - img.size[0]
-    delta_height = desired_size[1] - img.size[1]
-    pad_width = delta_width // 2
-    pad_height = delta_height // 2
-    padding = (pad_width, pad_height, delta_width - pad_width, delta_height - pad_height)
-    return ImageOps.expand(img, padding)
-
 def index_tuple_generator(lst):
     return dict([(i, x) for i, x in enumerate(lst)])
 
 problem_title = 'Pokemon type classification'
 
-path_images = os.path.join("Data", "Images")
-path_types = os.path.join("Data", "Table")
+path_images = os.path.join("Scrapping", "Images")
+path_types = os.path.join("Scrapping", "Table")
 
 df=pd.read_parquet(os.path.join(path_types, "Pokemon_name_and_type.parquet"))
 image_list = os.listdir(path_images)
 dic = {}
-expected_size = (128,128)
 for image_name in image_list:
     index=image_name.split("_")[0]
     img = Image.open(os.path.join(path_images, image_name))
-    img.thumbnail(expected_size, Image.Resampling.LANCZOS)
-    img = padding(img, expected_size)
     numpy_array = np.array(img)
     dic[index]=numpy_array
-df["image"]=df.index.map(dic)
+df["Image"]=df.index.map(dic)
 
 targets = ["Type 1", "Type 2"]
 
@@ -66,8 +54,8 @@ def get_cv(X, y):
 
 
 def get_train_data(path='.'):
-    return X_train.to_numpy(), y_train.to_numpy()
+    return X_train, y_train.to_numpy()
 
 
 def get_test_data(path='.'):
-    return X_test.to_numpy(), y_test.to_numpy()
+    return X_test, y_test.to_numpy()

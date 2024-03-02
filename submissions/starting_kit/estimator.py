@@ -17,7 +17,7 @@ class Classifier(BaseEstimator):
 
     def predict(self, X):
 
-        y_pred = np.zeros((X.shape[0], 18), dtype=int)
+        y_pred = np.zeros((len(X), 18), dtype=int)
 
         for i in range(len(X)) :
             # the number of types predicted
