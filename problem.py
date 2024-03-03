@@ -11,8 +11,8 @@ def index_tuple_generator(lst):
 
 problem_title = 'Pokemon type classification'
 
-path_images = os.path.join("Scrapping", "Images")
-path_types = os.path.join("Scrapping", "Table")
+path_images = os.path.join("data", "Images")
+path_types = os.path.join("data", "Table")
 
 df=pd.read_parquet(os.path.join(path_types, "Pokemon_name_and_type.parquet"))
 image_list = os.listdir(path_images)
