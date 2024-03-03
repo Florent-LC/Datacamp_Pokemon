@@ -1,4 +1,3 @@
-@@ -1,2 +1,36 @@
 # Datacamp - Pokemon Classification Challenge
 
 The team project for Datacamp 2023-2024
